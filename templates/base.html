@@ -1,0 +1,26 @@
+<!doctype html>
+<head>
+	<meta charset="utf-8">
+	<title>{% block head_title %}Meetup Raffle{% endblock %}</title>
+	<meta name="description" content="Run raffles for your meetups easily. Simply enter the event id and run this raffler.  This raffler will randomly select a winner from everyone who has checked in.">
+	<meta name="author" content="Eloy Zuniga Jr.">
+	{% block head_bottom %}{% endblock %}
+</head>
+ 
+<body>
+
+{% block body_content %}{% endblock %}
+
+<script src="http://cdn.jquerytools.org/1.2.5/jquery.tools.min.js"></script>
+
+<script>
+  var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+  g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
+  s.parentNode.insertBefore(g,s)}(document,"script"));
+</script>
+
+{% block body_bottom %}{% endblock %}
+
+</body>
+</html>

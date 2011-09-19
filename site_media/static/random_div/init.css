@@ -1,0 +1,10 @@
+
+
+
+.members img {
+	border: 3px solid black;
+}
+
+.members img.on {
+	border-color: red;
+}

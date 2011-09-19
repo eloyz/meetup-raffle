@@ -1,0 +1,12 @@
+local_settings.py
+local_urls.py
+sqlite3
+_notes/
+.*
+*.pyc
+
+# Ignore deploy files
+deploy/deploy.wsgi
+
+# except for .gitignore
+!.gitignore

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block head_bottom %}
+<style type="text/css">
+.member-photo {
+	width: 300px;
+	height: 300px;
+}
+
+.members{
+	margin-left: 300px;
+}
+
+.controls {
+	margin-top: 20px;
+}
+
+.start-btn.on a {
+	color: red;	
+};
+
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}random_div/init.css" />
+{% endblock %}
+
+{% block body_content %}
+
+<h1>{{ event.name }}</h1>
+
+<div class="members">
+	{% for member in rsvp_set %}
+	<img id="{{ member.member_id }}" class="member-photo {{ forloop.counter }}" src="{{ member.photo_url }}" />
+	{% endfor %}
+</div>
+
+<div class="controls">
+	<div class="next-btn"><a href="javascript:;">Next</a></div>
+	<div class="prev-btn"><a href="javascript:;">Prev</a></div>
+	<div class="start-btn"><a href="javascript:;">Start</a></div>
+	<div class="stop-btn"><a href="javascript:;">Stop</a></div>
+</div>
+
+<div class="member-names">
+	<ol>
+	{% for member in rsvp_set %}
+	<li>{{ member.name }}</li>
+	{% endfor %}
+	</ol>
+</div>
+
+<ol class="stage"></ol>
+
+{% endblock %}
+
+{% block body_bottom %}
+<script src="{{STATIC_URL}}jquery.cycle/jquery.cycle.all.min.js"></script>
+<script src="{{STATIC_URL}}event_handlers.js"></script>
+<!-- <script src="{{STATIC_URL}}cycle_through_members.js"></script> -->
+<script src="{{STATIC_URL}}random_div/init.js"></script>
+<!-- <script src="{{STATIC_URL}}simple.js"></script> -->
+<script>set_event_handlers();</script>
+{% endblock %}
+
+
+
+
+
+
