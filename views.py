@@ -7,7 +7,6 @@ API_KEY = settings.API_KEY
 
 def home(request, event_id=16085541):
     meetup = meetup_api_client.Meetup(API_KEY)
-
     event_set = meetup.get_events2(event_id=event_id).results
     rsvp_set = meetup.get_rsvps(event_id=event_id).results
     

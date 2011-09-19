@@ -10,7 +10,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
     url(r'^$', 'Meetup-Raffle.views.home', name='home'),
-    url(r'^(?P<event_id>\d+)/$', 'Meetup-Raffle.views.home', name='home'),
+    url(r'^(?P<event_id>\d+)', 'Meetup-Raffle.views.home', name='home'),
     
     # url(r'^Meetup-Raffle/', include('Meetup-Raffle.foo.urls')),
 
