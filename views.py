@@ -10,16 +10,16 @@ def home(request, event_id=16085541):
     event_set = meetup.get_events2(event_id=event_id).results
     rsvp_set = meetup.get_rsvps(event_id=event_id).results
     
-    for event in event_set:
-        print 'event', event.name
+    # for event in event_set:
+    #     print 'event', event.name
 
-    for member in rsvp_set:
-        print 'member', dir(member)
+    # for member in rsvp_set:
+    #     print 'member', dir(member)
     
     return render_to_response(
         'index.html', 
         {
-            'event':event,
+            'event':event_set[0],
             'rsvp_set':rsvp_set,
         }, 
         RequestContext(request)

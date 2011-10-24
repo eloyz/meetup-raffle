@@ -2,52 +2,61 @@
 
 {% block head_bottom %}
 <style type="text/css">
-.members{
-	margin-left: 300px;
-}
-
-.controls {
-	margin-top: 20px;
-}
-
-.start-btn.on a {
-	color: red;	
-}
-
 
 #raffle-space {
-	width: 300px;
+/*	width: 300px;
 	border: 1px solid silver;
-	padding: 10px;
+	padding: 10px;*/
 
-	-webkit-border-radius: 12px;
+/*	-webkit-border-radius: 12px;
 	-moz-border-radius: 12px;
-	border-radius: 12px;
+	border-radius: 12px;*/
 
 }
 
 #raffle-space #raffle-link {
-	font-size: 30px;
+/*	font-size: 30px;
 	float: left;
 	margin-top: 30px;
-	margin-left: 20px;
+	margin-left: 20px;*/
 }
 
 #victim {
-	float: right;
 	position: relative;
-	right: 130px;
+	width: 300px;
+	height: 300px;
 }
 
 #victim img {
-	width: 100px;
-	height: 100px;
-	background-color: silver;
-	margin-left: 10px;
-
+	width: 300px;
+	height: 300px;
 	position: absolute;
 	top: 0;
 	left: 0;
+}
+
+#victim #msg-stage {
+	padding: 10px;
+	width: 100%;
+	background-color: rgba(255,255,255,0.5);
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+
+#victim #raffle-link {
+/*	position: absolute;
+	left: 0;
+	bottom: 0;*/
+}
+Yeah
+#victim #raffle-link a {
+	/*margin-left: 10px;*/
+}
+
+#member-name {
+	display: none;
+	/*margin-left: 10px;*/
 
 }
 
@@ -61,25 +70,17 @@
 
 <h1>{{ event.name }}</h1>
 
-<div id="raffle-space">
-	<div id="raffle-link"><a href="javascript:;">Start Raffle</a></div>
-	<div class="time-stage"></div>
+<!-- <div class="time-stage"></div> -->
 
-	<div id="victim">
-		{% for member in rsvp_set %}
-		<img id="{{ member.member_id }}" class="member-photo {{ forloop.counter }}" src="{{ member.photo_url }}" />
-		{% endfor %}
+<div id="victim">
+	{% for member in rsvp_set %}
+	<img id="{{ member.member_id }}" class="member-photo {{ forloop.counter }}" src="{{ member.photo_url }}" />
+	{% endfor %}
+	<div id="msg-stage">
+		<div id="raffle-link"><a href="javascript:;">Start Raffle</a></div>
+		<div id="member-name">Loading ...</div>
 	</div>
-
-	<div style="clear:both"></div>
 </div>
-
-<!-- <div class="controls">
-	<div class="next-btn"><a href="javascript:;">Next</a></div>
-	<div class="prev-btn"><a href="javascript:;">Prev</a></div>
-	<div class="start-btn"><a href="javascript:;">Start</a></div>
-	<div class="stop-btn"><a href="javascript:;">Stop</a></div>
-</div> -->
 
 <div class="member-names">
 	<ol>
@@ -113,12 +114,13 @@ $(document).ready(function() {
 	var loop = function(){
 		if(index == 0) images.hide();	// hide all images at start
 		$(images[index++]).show();		// show next image
-		highlight_name(index-1);
+		highlight_name(index-1);		// hilight member name
 		index = index % images.length;	// reset index
 	};
 
 	var show_node = function(node){
 		node.show();
+		$('#member-name').hide();
 	};
 
 	$('#raffle-link a').click(function(){
@@ -128,15 +130,16 @@ $(document).ready(function() {
 		// set 'show link' time
 
 		$(this).hide();
+		$('#member-name').show();
 
-		// 10th of a second
+		// loop through photos; speed 10th of a second
 		var looping = setInterval(loop, 100);
-
 		var random_time = 1000 * random(5, 15);
-
 		$('.time-stage').text(random_time/1000);
 
+		// stop looping at random time
 		setTimeout(clearInterval, random_time, looping);
+		// show 'start raffle' link
 		setTimeout(show_node, random_time, $(this));
 	});
 
